@@ -8,7 +8,7 @@ require('../util')
 
 async function validateProdutoFields(req, res, next, app) {
   const { fields } = app.models.Produto
-
+  console.log(req.headers)
   const keysBody = Object.keys(req.body)
   try {
     if (keysBody.length < 1)

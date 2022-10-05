@@ -36,7 +36,6 @@ exports.removeFile = function (src) {
   try {
     const fileStat = statSync(src)
     if (fileStat.isFile()) unlinkSync(src);
-
   } catch (err) { }
 }
 
