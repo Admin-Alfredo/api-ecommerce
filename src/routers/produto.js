@@ -1,3 +1,4 @@
+const { once } = require('events')
 const express = require('express')
 const multer = require('multer')
 const path = require('path')
@@ -7,8 +8,15 @@ require('../util')
 
 
 async function validateProdutoFields(req, res, next, app) {
+  // once(req, 'data', {}).then(console.log)
+  console.log("(>>>) DATA: ",req.body)
+  req.on('data', function(data){
+
+  })
+
+
   const { fields } = app.models.Produto
-  console.log(req.headers)
+  // console.log(req.headers)
   const keysBody = Object.keys(req.body)
   try {
     if (keysBody.length < 1)
