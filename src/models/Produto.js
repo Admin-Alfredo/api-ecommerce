@@ -15,6 +15,11 @@ module.exports = app => {
       type: Number,
       require: true
     },
+    visible: {
+      type: Boolean,
+      default: false,
+      require: false
+    },
     quantidade: {
       type: Number,
       require: false

@@ -10,9 +10,6 @@ require('../util')
 async function validateProdutoFields(req, res, next, app) {
   // once(req, 'data', {}).then(console.log)
   console.log("(>>>) DATA: ",req.body)
-  req.on('data', function(data){
-
-  })
 
 
   const { fields } = app.models.Produto
@@ -44,20 +41,20 @@ async function validateProdutoFields(req, res, next, app) {
         if (fieldForUpdate == 'preco' && !req.body[fieldForUpdate])
           return res.status(400).json({ mensagem: 'qual é o preço do produto?' })
 
-        if (fieldForUpdate == 'preco' && !/^\d+|\d+\.\d+$/.test(req.body[fieldForUpdate].trim()))
+        if (fieldForUpdate == 'preco' && !/^\d+|\d+\.\d+$/.test(req.body[fieldForUpdate]))
           return res.status(400).json({ mensagem: 'O preço do produto deve ser um valor em Kwanza.' })
 
-        if (fieldForUpdate == 'preco')
-          req.body[fieldForUpdate] = Number(req.body[fieldForUpdate].trim())
+        // if (fieldForUpdate == 'preco')
+        //   req.body[fieldForUpdate] = Number(req.body[fieldForUpdate])
 
         if (fieldForUpdate == 'quantidade' && !req.body[fieldForUpdate])
           return res.status(400).json({ mensagem: 'informe a quantidade do produto.' })
 
-        if (fieldForUpdate == 'quantidade' && !/^\d+|\d+\.\d+$/.test(req.body[fieldForUpdate].trim()))
+        if (fieldForUpdate == 'quantidade' && !/^\d+|\d+\.\d+$/.test(req.body[fieldForUpdate]))
           return res.status(400).json({ mensagem: 'Quantidade do produto um valor inteiro.' })
 
-        if (fieldForUpdate == 'quantidade')
-          req.body[fieldForUpdate] = Number(req.body[fieldForUpdate].trim())
+        // if (fieldForUpdate == 'quantidade')
+        //   req.body[fieldForUpdate] = Number(req.body[fieldForUpdate].trim()
       }
     }
     return next()
@@ -135,5 +132,6 @@ module.exports = app => {
       return res.status(400).json({ mensagem: err.message })
     }
   })
-  app.use('/api/produto', router)
+  app.use('/api/produtos', router)
+  
 }
